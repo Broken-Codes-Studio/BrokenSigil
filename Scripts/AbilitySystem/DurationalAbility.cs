@@ -1,0 +1,9 @@
+namespace BrokenSigilCollection.Abilities;
+
+using Interface;
+
+public abstract partial class DurationalAbility : CooldownAbility, IDuration
+{
+    public abstract float Duration { get; set; }
+    public abstract bool Performing { get; }
+}

@@ -1,0 +1,14 @@
+# Godot 4+ specific ignores
+
+.tmp
+.DS_Store
+project.godot
+.idea/
+*.zip
+
+/.vscode
+/.vs
+
+.godot/
+.obsidian/
+/android/
