@@ -1,7 +1,7 @@
+namespace BrokenSigilCollection.Interface;
+
 using System.Collections.Generic;
 using Godot;
-
-namespace BrokenSigilCollection.Interface;
 
 //TODO: Need an overhaul.
 
@@ -10,6 +10,7 @@ namespace BrokenSigilCollection.Interface;
 /// </summary>
 public interface ISubPart
 {
+    /// <summary>
     /// Retrieves a collection of subparts associated with the Node.
     /// Each subpart is represented as a key-value pair, where the key is a <see cref="StringName"/> 
     /// and the value is an array of <see cref="Vector3"/> positions.

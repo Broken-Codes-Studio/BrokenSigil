@@ -25,7 +25,7 @@
 
 ### Github Main (Latest - Unstable)
 1. Download the latest `main branch`.
-2. Extract the zip file and move the `addons/BrokenSigil` directory into project's root location.
+2. Extract the zip file and move the `BrokenSigil` folder into project's `addons` folder.
 3. Enable the plugin inside `Project/Project Settings/Plugins`.
 
 For more help,

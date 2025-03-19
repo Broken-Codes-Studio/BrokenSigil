@@ -1,7 +1,10 @@
-using Godot;
-
 namespace BrokenSigilCollection.Interface;
 
+using Godot;
+
+/// <summary>
+/// Interface representing a part with a priority.
+/// </summary>
 public interface IPart : IPriority
 {
     /// <summary>
@@ -10,5 +13,4 @@ public interface IPart : IPriority
     /// </summary>
     /// <returns>A <see cref="StringName"/> representing the type of the part.</returns>
     public StringName GetPartType();
-
 }

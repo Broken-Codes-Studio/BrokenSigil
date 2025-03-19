@@ -1,11 +1,20 @@
+namespace BrokenSigilCollection.Interface;
+
 using Godot;
 
-namespace BrokenSigilCollection.Interface;
-public interface ITarget
+/// <summary>
+/// Generic interface for objects that can have a target.
+/// </summary>
+public interface ITarget<T> where T : Node
 {
+    /// <summary>
+    /// Gets the current target.
+    /// </summary>
+    public T Target { get; }
 
-    public Node Target { get; }
-
-    public void SetTarget(Node target);
-
+    /// <summary>
+    /// Sets the target.
+    /// </summary>
+    /// <param name="target">The target to set.</param>
+    public void SetTarget(T target);
 }

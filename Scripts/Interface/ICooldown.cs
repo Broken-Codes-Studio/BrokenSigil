@@ -5,9 +5,13 @@ namespace BrokenSigilCollection.Interface;
 /// </summary>
 public interface ICooldown
 {
-    // Current cooldown duration.
+    /// <summary>
+    /// Gets or sets the current cooldown duration.
+    /// </summary>
     public float Cooldown { get; set; }
 
-    // Indicates if the object is on cooldown.
+    /// <summary>
+    /// Indicates if the object is on cooldown.
+    /// </summary>
     public bool OnCoolDown { get; }
 }

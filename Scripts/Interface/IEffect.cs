@@ -1,18 +1,39 @@
+using Godot;
+
 namespace BrokenSigilCollection
 {
+    /// <summary>
+    /// Enum representing different types of effects.
+    /// </summary>
     public enum EffectTypes : byte
     {
+        /// <summary>
+        /// No effect.
+        /// </summary>
         None = 0,
+        
+        /// <summary>
+        /// Positive effect that enhances abilities.
+        /// </summary>
         Buff = 1,
+        
+        /// <summary>
+        /// Negative effect that diminishes abilities.
+        /// </summary>
         Debuff = 2,
     }
 }
 
 namespace BrokenSigilCollection.Interface
 {
-
-    public interface IEffect : IInitialize, ITarget, IFunctional, IDuration, IHardReset, IRemovable
+    /// <summary>
+    /// Interface for effects, combining multiple functionalities.
+    /// </summary>
+    public interface IEffect : IInitialize, ITarget<Node>, IFunctional, IDuration, IHardReset, IRemovable
     {
+        /// <summary>
+        /// Gets the type of the effect.
+        /// </summary>
         public EffectTypes EffectType { get; }
     }
 }

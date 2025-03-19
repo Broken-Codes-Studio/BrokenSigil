@@ -1,16 +1,17 @@
-using Godot;
-
 namespace BrokenSigilCollection.Interface;
 
+/// <summary>
+/// Interface to manage duration-related events and properties.
+/// </summary>
+public interface IDuration
+{
     /// <summary>
-    /// Interface to manage duration-related events and properties.
+    /// Gets or sets the current duration.
     /// </summary>
-    public interface IDuration
-    {
-        /// <summary>
-        /// Gets or sets the current duration.
-        /// </summary>
-        public float Duration { get; set; }
+    public float Duration { get; set; }
 
-        public bool Performing {get;}
-    }
+    /// <summary>
+    /// Indicates if the object is currently performing.
+    /// </summary>
+    public bool Performing { get; }
+}
