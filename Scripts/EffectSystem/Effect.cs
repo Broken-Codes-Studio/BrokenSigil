@@ -6,9 +6,11 @@ using Godot;
 /// <summary>
 /// Abstract base class for all effects in the game.
 /// </summary>
-public abstract partial class Effect : Node, IEffect, ITag<uint>
+public abstract partial class Effect : Node, IEffect<Node>, ITag<uint>
 {
     #region Properties
+    [Export]
+    public ProcessType processType { get; protected set; } = ProcessType.None;
     /// <summary>
     /// Gets the type of the effect.
     /// </summary>
@@ -46,11 +48,28 @@ public abstract partial class Effect : Node, IEffect, ITag<uint>
     /// <param name="target">The target node.</param>
     public abstract void SetTarget(Node target);
 
+    public override void _Process(double delta)
+    {
+        if (processType is ProcessType.Frame)
+            Perform(delta);
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        if (processType is ProcessType.Physics)
+            Perform(delta);
+    }
+
+
     /// <summary>
     /// Performs the effect.
     /// </summary>
     /// <param name="delta">The delta time.</param>
-    public virtual void Perform(double delta = 0) => applyEffect();
+    public virtual bool Perform(double delta = 0)
+    {
+        applyEffect();
+        return true;
+    }
 
     /// <summary>
     /// Applies the effect.

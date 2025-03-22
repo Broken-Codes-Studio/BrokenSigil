@@ -11,12 +11,12 @@ namespace BrokenSigilCollection
         /// No effect.
         /// </summary>
         None = 0,
-        
+
         /// <summary>
         /// Positive effect that enhances abilities.
         /// </summary>
         Buff = 1,
-        
+
         /// <summary>
         /// Negative effect that diminishes abilities.
         /// </summary>
@@ -29,7 +29,7 @@ namespace BrokenSigilCollection.Interface
     /// <summary>
     /// Interface for effects, combining multiple functionalities.
     /// </summary>
-    public interface IEffect : IInitialize, ITarget<Node>, IFunctional, IDuration, IHardReset, IRemovable
+    public interface IEffect<T> : IInitialize, ITarget<T>, IFunctional, IDuration, IHardReset, IRemovable where T : Node
     {
         /// <summary>
         /// Gets the type of the effect.

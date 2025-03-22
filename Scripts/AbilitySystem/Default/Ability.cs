@@ -9,11 +9,11 @@ public abstract partial class Ability : Passive
     /// Checks the input for the ability.
     /// </summary>
     /// <returns>True if the input is valid, otherwise false.</returns>
-    protected abstract bool checkInput();
+    public abstract bool CheckInput();
 
     /// <summary>
     /// Checks the condition for the ability.
     /// </summary>
     /// <returns>True if the condition is met, otherwise false.</returns>
-    public override bool CheckCondition() => checkInput();
+    public override bool CheckCondition() => CheckInput();
 }
