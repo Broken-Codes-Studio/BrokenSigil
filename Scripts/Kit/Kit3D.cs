@@ -28,7 +28,7 @@ public abstract partial class Kit3D<T> : Node3D, IKit<T> where T : Node
     {
         return GetEnumerator();
     }
-    public void Reconstruct()
+    public virtual void Reconstruct()
     {
         Clear();
         Construct();

@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 /// Abstract base class for all effects in the game.
 /// </summary>
-public abstract partial class Effect : Node, IEffect<Node>, ITag<uint>
+public abstract partial class Effect : Node, IEffect<Node>, ITag<uint>, IPriority
 {
     #region Properties
     [Export]
@@ -35,7 +35,9 @@ public abstract partial class Effect : Node, IEffect<Node>, ITag<uint>
     /// Gets or sets the tags associated with the effect.
     /// </summary>
     public abstract uint Tags { get; protected set; }
+    public abstract int Priority { get; set; }
     #endregion
+
 
     /// <summary>
     /// Initializes the effect.
@@ -76,15 +78,7 @@ public abstract partial class Effect : Node, IEffect<Node>, ITag<uint>
     /// </summary>
     protected abstract void applyEffect();
 
-    /// <summary>
-    /// Resets the effect.
-    /// </summary>
-    public abstract void Reset();
-
-    /// <summary>
-    /// Hard resets the effect.
-    /// </summary>
-    public abstract void HardReset();
+    public abstract void Revert();
 
     /// <summary>
     /// Removes the effect.
@@ -128,4 +122,5 @@ public abstract partial class Effect : Node, IEffect<Node>, ITag<uint>
     /// <param name="other">The other effect to compare.</param>
     /// <returns>True if the effects are similar, otherwise false.</returns>
     public bool IsSimular(ITag<uint> other) => (this.Tags & other.Tags) != 0;
+
 }

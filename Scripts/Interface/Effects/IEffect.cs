@@ -29,7 +29,7 @@ namespace BrokenSigilCollection.Interface
     /// <summary>
     /// Interface for effects, combining multiple functionalities.
     /// </summary>
-    public interface IEffect<T> : IInitialize, ITarget<T>, IFunctional, IDuration, IHardReset, IRemovable where T : Node
+    public interface IEffect<T> : IInitialize, ITarget<T>, IFunctional, IDuration, IRevert, IRemovable where T : Node
     {
         /// <summary>
         /// Gets the type of the effect.
