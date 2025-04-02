@@ -10,7 +10,7 @@ public abstract partial class TickEffect : Effect, ITick, ICondition
     /// <summary>
     /// Gets the duration between ticks.
     /// </summary>
-    public abstract float TickDuration { get; }
+    public abstract float TickDuration { get; set; }
 
     /// <summary>
     /// Checks the condition for the tick effect.
