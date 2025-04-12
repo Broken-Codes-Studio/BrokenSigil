@@ -38,7 +38,6 @@ public abstract partial class Effect : Node, IEffect<Node>, ITag<uint>, IPriorit
     public abstract int Priority { get; set; }
     #endregion
 
-
     /// <summary>
     /// Initializes the effect.
     /// </summary>
