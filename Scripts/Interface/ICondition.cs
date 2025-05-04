@@ -11,3 +11,8 @@ public interface ICondition
     /// <returns>True if the condition is met, otherwise false.</returns>
     public bool CheckCondition();
 }
+
+public interface ICondition<T>
+{
+    public bool CheckCondition(T value);
+}
