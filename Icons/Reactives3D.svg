@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16"
+   height="15.999999"
+   viewBox="0 0 4.2333332 4.233333"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="Reactives3D.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     showgrid="false"
+     inkscape:zoom="35.406252"
+     inkscape:cx="6.0582521"
+     inkscape:cy="7.9505732"
+     inkscape:window-width="2560"
+     inkscape:window-height="1351"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="swatch5">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop5" />
+    </linearGradient>
+  </defs>
+  <path
+     d="M 3.6610585,3.9832234 H 3.0167264 L 1.7681761,2.4990031 H 1.0686871 V 3.9832234 H 0.5722756 V 0.25010838 h 1.0454728 q 0.3384624,0 0.564104,0.0451283 0.2256416,0.0426212 0.4061549,0.155442 0.2030774,0.12786358 0.3158983,0.32341964 0.1153279,0.19304893 0.1153279,0.49139726 0,0.4036478 -0.2030775,0.6769248 -0.2030774,0.27077 -0.5590897,0.4086621 z M 2.5002578,1.3005954 q 0,-0.1604562 -0.057664,-0.2833056 Q 2.387437,0.8919334 2.2570663,0.80669101 2.1492597,0.73398427 2.0013391,0.70640585 1.8534185,0.67632031 1.6528482,0.67632031 H 1.0686871 V 2.0853268 h 0.5014258 q 0.2356702,0 0.4111692,-0.040114 0.175499,-0.042621 0.2983483,-0.155442 0.1128208,-0.1052994 0.1654705,-0.2406843 0.055157,-0.1378921 0.055157,-0.348491 z"
+     id="text1"
+     style="font-size:5.1346px;fill:#fc7f7f;stroke:#fc7f7f;stroke-width:0.339611;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke;fill-opacity:1;stroke-opacity:1"
+     aria-label="R"
+     inkscape:label="Reactives3D" />
+</svg>

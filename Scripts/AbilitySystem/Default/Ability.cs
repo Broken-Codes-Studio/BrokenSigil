@@ -1,8 +1,11 @@
 namespace BrokenSigilCollection.Abilities;
 
+using Godot;
+
 /// <summary>
 /// Abstract base class for all abilities in the game.
 /// </summary>
+[Icon("uid://brfe5un54pbh2")]
 public abstract partial class Ability : Passive
 {
     /// <summary>

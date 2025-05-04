@@ -6,6 +6,7 @@ using Godot;
 /// <summary>
 /// Abstract base class for passive abilities.
 /// </summary>
+[Icon("uid://ccg8mxdjapg7i")]
 public abstract partial class Passive : Node, IPassive<Node>
 {
     [Export]

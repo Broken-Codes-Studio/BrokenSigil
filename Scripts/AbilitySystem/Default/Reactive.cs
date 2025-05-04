@@ -8,6 +8,7 @@ using Godot;
 /// <summary>
 /// Abstract base class for passives that repeat an action when they are not on cooldown.
 /// </summary>
+[Icon("uid://cpqsus2rvuw21")]
 public abstract partial class Reactive : Passive, ICooldown
 {
     #region Signals
