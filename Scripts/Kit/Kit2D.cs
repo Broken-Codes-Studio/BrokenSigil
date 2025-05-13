@@ -5,7 +5,7 @@ using Godot;
 using System.Collections;
 using System.Collections.Generic;
 
-public abstract partial class Kit2D<T> : Node2D, IKit<T> where T : Node
+public abstract partial class Kit2D<T> : Node2D, IKit<T>
 {
     public abstract int Count { get; }
     public bool IsReadOnly => false;

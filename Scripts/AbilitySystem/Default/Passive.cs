@@ -7,7 +7,7 @@ using Godot;
 /// Abstract base class for passive abilities.
 /// </summary>
 [Icon("uid://ccg8mxdjapg7i")]
-public abstract partial class Passive : Node, IPassive<Node>
+public abstract partial class Passive : Node, IPassive, ITarget<Node>
 {
     [Export]
     public ProcessType processType { get; protected set; } = ProcessType.Frame;

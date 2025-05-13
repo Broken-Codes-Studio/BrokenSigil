@@ -2,7 +2,7 @@ namespace BrokenSigilCollection.Interface;
 
 using Godot;
 
-public interface IAbility<T> : IPassive<T> where T : Node
+public interface IAbility : IPassive
 {
     /// <summary>
     /// Checks the input for the ability.
