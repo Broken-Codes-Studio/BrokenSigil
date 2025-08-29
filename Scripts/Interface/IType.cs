@@ -6,10 +6,10 @@ using System.Numerics;
 /// <summary>
 /// Generic interface representing a class with categorization and filtering capabilities.
 /// </summary>
-public interface IClass<T> : IEquatable<IClass<T>>, ISimuable<IClass<T>> where T : IUnsignedNumber<T>
+public interface IType<T> : IEquatable<IType<T>>, ISimuable<IType<T>> where T : IUnsignedNumber<T>
 {
     /// <summary>
     /// Gets the class type of the part as a bitmask, used for categorization or filtering.
     /// </summary>
-    public T Class { get; }
+    public T Type { get; }
 }

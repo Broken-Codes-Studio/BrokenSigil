@@ -1,5 +1,6 @@
 namespace BrokenSigilCollection.Interface;
 
+using Godot;
 using System;
 using System.Numerics;
 
@@ -37,4 +38,23 @@ public interface ITag<T> : IEquatable<ITag<T>>, ISimuable<ITag<T>> where T : IUn
     /// Clears all tags from the object.
     /// </summary>
     public void ClearTags();
+}
+
+/// <summary>
+/// Generic interface for objects that can manage tags.
+/// </summary>
+public interface ITag : IEquatable<ITag>
+{
+    /// <summary>
+    /// Gets the tags associated with the object.
+    /// </summary>
+    public StringName[] Tags { get; }
+
+    /// <summary>
+    /// Determines whether the object contains the specified tags.
+    /// </summary>
+    /// <param name="tags">The tags to check for.</param>
+    /// <returns>true if the object contains the specified tags; otherwise, false.</returns>
+    public bool ContainsTag(StringName tag);
+
 }
