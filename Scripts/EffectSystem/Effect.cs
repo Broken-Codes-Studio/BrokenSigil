@@ -7,7 +7,7 @@ using Godot;
 /// Abstract base class for all effects in the game.
 /// </summary>
 [Icon("uid://bcr6jephyypf6")]
-public abstract partial class Effect : Node, IEffect<Node>, ITag<uint>, IPriority
+public abstract partial class Effect : Node, IEffect<Node>, ITag<uint>, IPriority<int>
 {
     #region Properties
     [Export]
