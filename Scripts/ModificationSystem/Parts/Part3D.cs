@@ -26,11 +26,13 @@ public abstract partial class Part3D : Node3D, IPart, ISubParts3D, IFunctionalit
 
     public abstract string[] Incompatibles { get; protected set; }
 
-    public abstract Dictionary<StringName, Vector3[]> SubPartsLocations { get; protected set; }
+    public abstract Dictionary<StringName, Vector3> SubPartsLocation { get; protected set; }
 
     public abstract void AddFunctionality(Node target);
 
     public abstract void RemoveFunctionality();
+
+    public Godot.Collections.Dictionary<StringName, Variant> Blackboard { get; protected set; }
 
     public byte StackCount { get; protected set; } = 1;
 
