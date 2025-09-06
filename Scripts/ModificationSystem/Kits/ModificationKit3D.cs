@@ -11,7 +11,20 @@ using BrokenSigilCollection.Utility;
 public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<ushort>, IType<ushort>
 {
     #region Signals
-    //TODO: Add signals
+
+    [Signal]
+    public delegate void OnPartAddedEventHandler();
+    [Signal]
+    public delegate void OnPartRemovedEventHandler();
+    [Signal]
+    public delegate void OnPartReplacedEventHandler();
+    #endregion
+
+    #region Actions
+
+    public Action<IPart> OnPartAdded;
+    public Action<IPart> OnPartRemoved;
+    public Action<IPart> OnPartReplaced;
     #endregion
 
     public abstract ushort ID { get; protected set; }
@@ -43,10 +56,12 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
         return true;
     }
 
-    //TODO: Check for part confilicts
     public override void Add(IPart item)
     {
         if (!Compatible(item))
+            return;
+
+        if (CheckConflict(item))
             return;
 
         if (slots[item.SlotName].Filled)
@@ -56,10 +71,12 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
 
     }
 
-    //TODO: Check for part confilicts
     protected virtual IPart Replace(IPart item)
     {
         if (!Compatible(item))
+            return null;
+
+        if (CheckConflict(item))
             return null;
 
         if (slots[item.SlotName].Filled)
@@ -85,7 +102,57 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
         return false;
     }
 
+    public bool Remove(StringName slotName)
+    {
+        if (Contains(slotName) && !slots[slotName].Main)
+        {
+            var part = parts[slotName] as Node;
+
+            parts.Remove(slotName);
+
+            RemoveChild(part);
+
+            Construct();
+            return true;
+        }
+
+        return false;
+    }
+
     public override bool Contains(IPart item) => parts.ContainsKey(item.SlotName) && parts[item.SlotName].ID == item.ID;
+    public bool Contains(StringName slotName) => parts.ContainsKey(slotName);
+
+    public bool CheckConflict(IPart item)
+    {
+        foreach (var part in parts.Values)
+        {
+            foreach (var Incompatible in part.Incompatibles)
+            {
+                if (_checkSyntax(item, Incompatible))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool CheckConflict(IPart item, out IPart[] conflictParts)
+    {
+        List<IPart> conflictList = new(parts.Count);
+
+        foreach (var part in parts.Values)
+        {
+            foreach (var Incompatible in part.Incompatibles)
+            {
+                if (_checkSyntax(item, Incompatible))
+                    conflictList.Add(part);
+            }
+        }
+
+        conflictParts = conflictList.ToArray();
+
+        return conflictParts.Length > 0;
+    }
 
     public bool ContainsSlot(StringName slotName) => slots.ContainsKey(slotName);
 
@@ -160,14 +227,18 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
     {
 
         IPart prevPart = parts[part.SlotName];
-        RemoveChild(prevPart as Node);
 
-        parts[part.SlotName] = part;
-        AddChild(part as Node, forceReadableName: true);
+        if (Remove(prevPart))
+        {
+            parts[part.SlotName] = part;
+            AddChild(part as Node, forceReadableName: true);
 
-        Construct();
+            Construct();
 
-        return prevPart;
+            return prevPart;
+        }
+
+        return null;
 
     }
 
@@ -175,25 +246,8 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
     {
         foreach (var black in blackList)
         {
-            if (black[0] == '@')
-            {
-                ushort id = ushort.Parse(black.Remove(0, 1));
-
-                if (part.ID == id)
-                    return false;
-            }
-            else if (black[0] == '#')
-            {
-                StringName tag = black.Remove(0, 1);
-
-                if (part.ContainsTag(tag))
-                    return false;
-            }
-            else
-            {
-                if ((part as Node).Name == black)
-                    return false;
-            }
+            if (_checkSyntax(part, black))
+                return false;
         }
 
         return true;
@@ -240,6 +294,32 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
 
         return false;
     }
+
+    private bool _checkSyntax(IPart part, string text)
+    {
+        if (text[0] == '@')
+        {
+            ushort id = ushort.Parse(text.Remove(0, 1));
+
+            if (part.ID == id)
+                return true;
+        }
+        else if (text[0] == '#')
+        {
+            StringName tag = text.Remove(0, 1);
+
+            if (part.ContainsTag(tag))
+                return true;
+        }
+        else
+        {
+            if ((part as Node).Name == text)
+                return true;
+        }
+
+        return false;
+    }
+
 
     //TODO: Optimization. Make it catch positions and update them only if needed.
     //TODO: Use Transform3D for better part placement.
