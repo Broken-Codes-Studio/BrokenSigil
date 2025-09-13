@@ -88,19 +88,44 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
         return null;
     }
 
+    public bool Remove(IPart item, bool queueFree)
+    {
+        if (item is Node part)
+        {
+            if (queueFree)
+                part.QueueFree();
+            else
+                RemoveChild(part);
+        }
+
+        return Remove(item);
+    }
+
     public override bool Remove(IPart item)
     {
         if (Contains(item) && !slots[item.SlotName].Main)
         {
             parts.Remove(item.SlotName);
 
-            RemoveChild(item as Node);
-
             Construct();
             return true;
         }
 
         return false;
+    }
+
+
+    public bool Remove(StringName slotName, bool queueFree)
+    {
+        if (parts[slotName] is Node part)
+        {
+            if (queueFree)
+                part.QueueFree();
+            else
+                RemoveChild(part);
+        }
+
+        return Remove(slotName);
     }
 
     public bool Remove(StringName slotName)
@@ -111,7 +136,10 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
 
             parts.Remove(slotName);
 
-            RemoveChild(part);
+            if (part.GetParent() is not null)
+                RemoveChild(part);
+            else
+                part.QueueFree();
 
             Construct();
             return true;
