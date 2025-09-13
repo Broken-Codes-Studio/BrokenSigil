@@ -1,7 +1,7 @@
 namespace BrokenSigilCollection.Interface;
 
-using System.Collections.Generic;
 using Godot;
+using Godot.Collections;
 
 public interface ISubParts3D
 {

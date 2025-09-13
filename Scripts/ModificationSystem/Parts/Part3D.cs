@@ -1,11 +1,12 @@
 namespace BrokenSigilCollection.Modification;
 
 using Godot;
+using Godot.Collections;
+
 using System;
+using System.Linq;
 
 using BrokenSigilCollection.Interface;
-using System.Collections.Generic;
-using System.Linq;
 
 public abstract partial class Part3D : Node3D, IPart, ISubParts3D, IFunctionality, IStack<byte>, IRarity
 {
@@ -16,7 +17,7 @@ public abstract partial class Part3D : Node3D, IPart, ISubParts3D, IFunctionalit
 
     public abstract short Priority { get; set; }
 
-    public StringName[] Tags { get; protected set; }
+    public abstract StringName[] Tags { get; protected set; }
 
     public abstract ushort Type { get; protected set; }
 
@@ -32,7 +33,8 @@ public abstract partial class Part3D : Node3D, IPart, ISubParts3D, IFunctionalit
 
     public abstract void RemoveFunctionality();
 
-    public Godot.Collections.Dictionary<StringName, Variant> Blackboard { get; protected set; }
+    [Export]
+    public Dictionary<StringName, Variant> Blackboard { get; protected set; } = new();
 
     public byte StackCount { get; protected set; } = 1;
 

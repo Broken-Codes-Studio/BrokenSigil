@@ -12,12 +12,6 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
 {
     #region Signals
 
-    [Signal]
-    public delegate void OnPartAddedEventHandler();
-    [Signal]
-    public delegate void OnPartRemovedEventHandler();
-    [Signal]
-    public delegate void OnPartReplacedEventHandler();
     #endregion
 
     #region Actions
@@ -32,11 +26,18 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
 
     protected abstract Dictionary<StringName, IPart> parts { get; set; }
     protected abstract Dictionary<StringName, Slot3D> slots { get; set; }
-    protected Dictionary<string, Variant> blackboard { get; set; } = new();
+    [Export]
+    protected Godot.Collections.Dictionary<string, Variant> blackboard { get; set; } = new();
     protected List<string> blackList { get; set; } = new();
 
     public override int Count => parts.Count;
     public int SlotCount => slots.Count;
+
+    public IPart this[StringName slotName]
+    {
+        get => parts[slotName];
+        set => Add(value);
+    }
 
     public override void _EnterTree()
     {
@@ -174,6 +175,8 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
         return true;
 
     }
+
+    public bool IsSlotFilled(StringName slotName) => slots[slotName].Filled;
 
     public override void Clear()
     {
@@ -326,8 +329,6 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
     private void _positionDependencies()
     {
 
-        Transform3D gTransform = GlobalTransform;
-
         // Process main slots first so anchors are set before children.
         // Then process other slots.
         var orderedSlots = slots.Values
@@ -350,7 +351,7 @@ public abstract partial class ModificationKit3D : Kit3D<IPart>, IIdentification<
             }
 
             if (parts[slot.Name] is Node3D part3D)
-                part3D.GlobalPosition = _getSlotPosition(slot) * GlobalTransform;
+                part3D.Position = _getSlotPosition(slot) * Transform;
 
         }
 
