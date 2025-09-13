@@ -5,11 +5,17 @@ using System.Globalization;
 using System.Numerics;
 using Godot;
 
+/// <summary>
+/// Provides utility methods for parsing and processing numeric and syntax operations.
+/// </summary>
 public static class SigilSyntax
 {
 
     private const string SYNTAX_CHARACTERS = "+-*/=#@";
 
+    /// <summary>
+    /// Parses a string with a numeric suffix into a Variant.
+    /// </summary>
     public static Variant ParseNumber(string input)
     {
         if (string.IsNullOrWhiteSpace(input))
@@ -36,6 +42,9 @@ public static class SigilSyntax
         };
     }
 
+    /// <summary>
+    /// Processes two numbers and applies an operation based on the syntax.
+    /// </summary>
     public static Variant ProcessNumbers(Variant num1, string opNum2)
     {
         if (string.IsNullOrWhiteSpace(opNum2))
@@ -64,6 +73,9 @@ public static class SigilSyntax
         };
     }
 
+    /// <summary>
+    /// Extracts the suffix from a numeric string and returns the number part.
+    /// </summary>
     public static string GetSuffix(string input, out string numberPart)
     {
         // Walk backward until first non-letter
@@ -75,6 +87,9 @@ public static class SigilSyntax
         return input[(i + 1)..].ToLowerInvariant();
     }
 
+    /// <summary>
+    /// Parses an operation from a string, returning the operator and value.
+    /// </summary>
     public static (char op, string value) ParseOperation(string input)
     {
         if (string.IsNullOrWhiteSpace(input))
@@ -86,6 +101,9 @@ public static class SigilSyntax
         return (input[0], input[1..]);
     }
 
+    /// <summary>
+    /// Applies an arithmetic operation to two numbers.
+    /// </summary>
     public static T Operate<[MustBeVariant] T>(T num1, T num2, char op) where T : INumber<T>
     {
         return op switch
@@ -99,6 +117,9 @@ public static class SigilSyntax
         };
     }
 
+    /// <summary>
+    /// Checks if the input character is a syntax character.
+    /// </summary>
     public static bool IsSyntaxChar(char input)
     {
         foreach (char character in SYNTAX_CHARACTERS)
