@@ -7,7 +7,7 @@ using BrokenSigilCollection.Interface;
 using System.Collections.Generic;
 using System.Linq;
 
-public abstract partial class MeshPart3D : MeshInstance3D, IPart, ISubParts3D, IFunctionality, IStack<byte>, IRarity
+public abstract partial class MeshPart3D : MeshInstance3D, IPart, ISubParts3D, IFunctionality, IStack<byte>, IRarity, IReset
 {
 
     public abstract ushort ID { get; protected set; }
@@ -38,9 +38,7 @@ public abstract partial class MeshPart3D : MeshInstance3D, IPart, ISubParts3D, I
 
     public void Stack(byte count) => StackCount = (byte)Mathf.Clamp(StackCount + count, 1, 255);
 
-    public void RemoveStack(byte count) => StackCount = (byte)Mathf.Clamp(StackCount - count, 1, 255);
-
-    public void ClearStack() => StackCount = 1;
+    public void ReduceStack(byte count) => StackCount = (byte)Mathf.Clamp(StackCount - count, 1, 255);
 
     public bool Equals(ITag other) => Tags.Equals(other.Tags);
 
@@ -49,4 +47,6 @@ public abstract partial class MeshPart3D : MeshInstance3D, IPart, ISubParts3D, I
     public bool Equals(IIdentification<ushort> other) => ID.Equals(other.ID);
 
     public bool IsSimular(IType<ushort> other) => (Type & other.Type) != 0;
+
+    public void Reset() => StackCount = 1;
 }

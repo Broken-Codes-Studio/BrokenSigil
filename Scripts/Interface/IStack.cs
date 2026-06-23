@@ -18,7 +18,5 @@ public interface IStack<T> where T : IUnsignedNumber<T>
     /// <param name="count">The number of stacks to add. Default is 1.</param>
     public void Stack(T count);
 
-    public void RemoveStack(T count);
-
-    public void ClearStack();
+    public void ReduceStack(T count);
 }
